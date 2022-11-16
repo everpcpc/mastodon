@@ -49,28 +49,12 @@ class NavigationPanel extends Component {
     return match || location.pathname.startsWith('/public');
   };
 
-  render () {
+  render() {
     const { intl } = this.props;
     const { signedIn, disabledAccountId } = this.context.identity;
 
     return (
       <div className='navigation-panel'>
-        <div className='navigation-panel__logo'>
-          <Link to='/' className='column-link column-link--logo'><WordmarkLogo /></Link>
-
-          {transientSingleColumn ? (
-            <div class='switch-to-advanced'>
-              {intl.formatMessage(messages.openedInClassicInterface)}
-              {" "}
-              <a href={`/deck${location.pathname}`} class='switch-to-advanced__toggle'>
-                {intl.formatMessage(messages.advancedInterface)}
-              </a>
-            </div>
-          ) : (
-            <hr />
-          )}
-        </div>
-
         {signedIn && (
           <>
             <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
@@ -92,7 +76,7 @@ class NavigationPanel extends Component {
         {!signedIn && (
           <div className='navigation-panel__sign-in-banner'>
             <hr />
-            { disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner /> }
+            {disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner />}
           </div>
         )}
 
