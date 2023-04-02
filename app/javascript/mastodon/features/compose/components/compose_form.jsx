@@ -100,7 +100,7 @@ class ComposeForm extends ImmutablePureComponent {
     const fulltext = this.getFulltextForCharacterCounting();
     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 4096 || (isOnlyWhitespace && !anyMedia));
   };
 
   handleSubmit = (e) => {
@@ -295,9 +295,8 @@ class ComposeForm extends ImmutablePureComponent {
               <SpoilerButtonContainer />
               <LanguageDropdown />
             </div>
-
             <div className='character-counter__wrapper'>
-              <CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} />
+              <CharacterCounter max={4096} text={this.getFulltextForCharacterCounting()} />
             </div>
           </div>
         </div>
